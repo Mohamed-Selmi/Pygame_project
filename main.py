@@ -40,9 +40,9 @@ def draw_health_bar(health,x,y):
 
 
 
-character1=Character(200,510,False,WARRIOR_DATA,warrior_sheet,warrior_animation_steps)
+character1=Character(1,200,510,False,WARRIOR_DATA,warrior_sheet,warrior_animation_steps)
 
-character2=Character(1200,510,True,WARRIOR_DATA,warrior_sheet,warrior_animation_steps)
+character2=Character(2,1200,510,True,WARRIOR_DATA,warrior_sheet,warrior_animation_steps)
 
 game_running=True
 
@@ -52,14 +52,15 @@ while game_running:
     draw_health_bar(character1.health,20,20)
     draw_health_bar(character2.health,1020,20)
     character1.move(SCREEN_WIDTH,SCREEN_HEIGHT,screen,character2)
+    character2.move(SCREEN_WIDTH,SCREEN_HEIGHT,screen,character1)
     character1.update_character()
     character2.update_character()
-   #  character2.move()
+    
     character1.draw(screen)
     character2.draw(screen)
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
-            game_running=True
+            game_running=False
 
     pygame.display.update()
 pygame.quit()
