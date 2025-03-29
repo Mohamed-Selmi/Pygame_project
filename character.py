@@ -39,7 +39,7 @@ class Character():
         pygame.draw.rect(surface,(0,255,0),self.rect)
         surface.blit(rotating_img,(self.rect.x-(self.offset[0]*self.image_scale),self.rect.y-(self.offset[1]*self.image_scale)))
 
-    def move(self,screen_width,screen_height,surface,target):
+    def move(self,screen_width,screen_height,surface,target,round_over):
         CHARACTER_SPEED=10
         CHARACTER_GRAVITY=2
         move_x=0
@@ -48,7 +48,7 @@ class Character():
         self.attack_type=0
         key=pygame.key.get_pressed()
 
-        if self.attacking==False:
+        if self.attacking==False and self.alive==True and round_over==False:
             if self.player==1:
                 if key[pygame.K_a]:
                     self.moving=True
@@ -64,6 +64,7 @@ class Character():
                     self.jumping=True
                 self.velocity_y+=CHARACTER_GRAVITY
                 if key[pygame.K_r] or key[pygame.K_t]:
+                    
                     self.attack(surface,target)
                     if key[pygame.K_r]:
                         self.attack_type=1
@@ -155,7 +156,7 @@ class Character():
             self.attacking=True
             attacking_rectangle=pygame.Rect(self.rect.centerx-(2*self.rect.width*self.flip),self.rect.y,2*self.rect.width,self.rect.height)
             if attacking_rectangle.colliderect(target.rect):
-                target.health-=100
+                target.health-=10
                 target.hit=True
 
             pygame.draw.rect(surface,(255,0,0),attacking_rectangle)
