@@ -1,11 +1,13 @@
 import pygame
 class Character():
-    def __init__(self,player,x,y,flip,data,sprite_sheet,animation_steps):
+    def __init__(self,player,x,y,flip,character_data):#data,sprite_sheet,animation_steps):
         self.player=player
-        self.size=data[0]
-        self.image_scale=data[1]
-        self.offset=data[2]
-        self.animation_list=self.load_images(sprite_sheet,animation_steps)
+        self.size=character_data[0][0]
+        self.image_scale=character_data[0][1]
+        self.offset=character_data[0][2]
+        self.sprite_sheet=character_data[1]
+        self.animation_steps=character_data[2]
+        self.animation_list=self.load_images(self.sprite_sheet,self.animation_steps)
         self.action_list={"idle":0,"moving":1,"jumping":2,"attack1":3,"attack2":4,"hit":5,"death":6}
         self.action=0
         self.frame_index=0
