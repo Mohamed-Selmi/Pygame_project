@@ -158,7 +158,7 @@ class Character():
             self.attacking=True
             attacking_rectangle=pygame.Rect(self.rect.centerx-(2*self.rect.width*self.flip),self.rect.y,2*self.rect.width,self.rect.height)
             if attacking_rectangle.colliderect(target.rect):
-                target.health-=10
+                target.health-=100
                 target.hit=True
 
             pygame.draw.rect(surface,(255,0,0),attacking_rectangle)
