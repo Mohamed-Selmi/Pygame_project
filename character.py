@@ -1,7 +1,8 @@
 import pygame
 class Character():
-    def __init__(self,player,x,y,flip,character_data):#data,sprite_sheet,animation_steps):
+    def __init__(self,player,x,y,flip,name,character_data):#data,sprite_sheet,animation_steps):
         self.player=player
+        self.name=name
         self.size=character_data[0][0]
         self.image_scale=character_data[0][1]
         self.offset=character_data[0][2]
@@ -65,7 +66,7 @@ class Character():
                     self.velocity_y=-30
                     self.jumping=True
                 self.velocity_y+=CHARACTER_GRAVITY
-                if key[pygame.K_r] or key[pygame.K_t]:
+                if key[pygame.K_r] or key[pygame.K_t] and self.jumping==False:
                     
                     self.attack(surface,target)
                     if key[pygame.K_r]:
@@ -99,10 +100,10 @@ class Character():
         if self.rect.right+move_x>screen_width:
             move_x=screen_width-self.rect.right 
 
-        if self.rect.bottom+move_y>screen_height-220:
+        if self.rect.bottom+move_y>screen_height-90:
             self.velocity_y=0
             self.jumping=False
-            move_y=screen_height-220-self.rect.bottom           
+            move_y=screen_height-90-self.rect.bottom           
         if target.rect.centerx>self.rect.centerx:
             self.flip=False
         else:
@@ -158,8 +159,8 @@ class Character():
             self.attacking=True
             attacking_rectangle=pygame.Rect(self.rect.centerx-(2*self.rect.width*self.flip),self.rect.y,2*self.rect.width,self.rect.height)
             if attacking_rectangle.colliderect(target.rect):
-                target.health-=100
+                target.health-=50
                 target.hit=True
-
             pygame.draw.rect(surface,(255,0,0),attacking_rectangle)
+
 
