@@ -7,35 +7,39 @@ from loadcharacters import *
 from loadmap import loadbackground
 class Menu:
 	def __init__(self,master):
-		self.master=master
-		self.master.geometry('1000x960')
+		self.master=master  
+		self.master.geometry('1000x960')   
 		self.master.maxsize(1000,960)
-		self.frame1=tk.Frame(self.master, width=1000, height=960,bg='#197278',borderwidth=2, relief="solid")
+		self.frame1=tk.Frame(self.master, width=1000, height=960,bg='#222831',borderwidth=2, relief="solid")
 		self.frame1.place(x=0,y=0)
-		self.play_button=tk.Button(self.frame1,text="PLAY",font=('Arial',15,"bold"),bg='#F0A04B',borderwidth=2, relief="solid",command=lambda:self.start_game())
+		self.play_button=tk.Button(self.frame1,text="PLAY",font=('Arial',15,"bold"),bg='#FFD369',borderwidth=2, relief="solid",command=lambda:self.start_game())
 		self.play_button.place(x=240,y=155,height=80,width=480)
-		self.player1name_label=tk.Label(self.frame1, text="Pick a name for player 1:",font=('Arial',13,"bold"),bg='#F0A04B')
+		self.player1name_label=tk.Label(self.frame1, text="Pick a name for player 1:",font=('Arial',13,"bold"),bg='#EEEEEE')
 		self.player1name_label.place(x=120,y=300,height=25,width=240)
-		self.Player1_name=tk.Entry(self.frame1,width=50)
+		self.Player1_name=tk.Entry(self.frame1,width=50,bg="#FFF")
 		self.Player1_name.place(x=100,y=350)
-		self.player2name_label=tk.Label(self.frame1, text="Pick a name for player 2:",font=('Arial',13,"bold"),bg='#F0A04B')
+		style= ttk.Style()
+		style.theme_use('clam')
+		style.configure("TCombobox", fieldbackground= "#FFF", background= "#048A81")
+		self.player2name_label=tk.Label(self.frame1, text="Pick a name for player 2:",font=('Arial',13,"bold"),bg='#EEEEEE')
 		self.player2name_label.place(x=670,y=300,height=25,width=240)
-		self.Player2_name=tk.Entry(self.frame1,width=50)
+		self.Player2_name=tk.Entry(self.frame1,width=50,bg="#FFF")
 		self.Player2_name.place(x=650,y=350)
-		self.player1_label=tk.Label(self.frame1, text="Choose your fighter Player 1:",font=('Arial',13,"bold"),bg='#F0A04B')
+		self.player1_label=tk.Label(self.frame1, text="Choose your fighter Player 1:",font=('Arial',13,"bold"),bg='#EEEEEE')
 		self.player1_label.place(x=120,y=500,height=25,width=240)
-		self.player1=ttk.Combobox(self.frame1,height = 10,width=50, values=('warrior', 'Female wizard', 'oni','king','samurai','evil wizard','merlin','knight','Tarzan'))
+		
+		self.player1=ttk.Combobox(self.frame1,height = 10,width=50, values=('warrior', 'Female wizard', 'oni','king','samurai','evil wizard','Huntress','knight','Tarzan'))
 		self.player1.place(x=80,y=550)
-		self.player2_label=tk.Label(self.frame1, text="Choose your fighter Player 2:",font=('Arial',13,"bold"),bg='#F0A04B')
+		self.player2_label=tk.Label(self.frame1, text="Choose your fighter Player 2:",font=('Arial',13,"bold"),bg='#EEEEEE')
 		self.player2_label.place(x=670,y=500,height=25,width=240)
-		self.player2=ttk.Combobox(self.frame1,height = 10,width=50, values=('warrior', 'Female wizard', 'oni','king','samurai','evil wizard','merlin','knight','Tarzan'))
+		self.player2=ttk.Combobox(self.frame1,height = 10,width=50, values=('warrior', 'Female wizard', 'oni','king','samurai','evil wizard','Huntress','knight','Tarzan'))
 		self.player2.place(x=650,y=550)
-		self.map_label=tk.Label(self.frame1,text="select a map:",font=('Arial',13,"bold"),bg='#F0A04B')
+		self.map_label=tk.Label(self.frame1,text="Select a map:",font=('Arial',13,"bold"),bg='#EEEEEE')
 		self.map_label.place(x=450,y=650)
 		self.map=ttk.Combobox(self.frame1,height = 10,width=50, values=('Japanese Bath', 'Ruined castle', 'Harley bike club','Foggy swamp','Chinese pavillion','Temple',
 																  'Lady in the lake','Harbor','Failed heist','Waterfall'))
 		self.map.place(x=350,y=700)
-		self.exit_button=tk.Button(self.frame1,text="EXIT",font=('Arial',15,"bold"),bg='#F0A04B',borderwidth=2, relief="solid",command=lambda:self.master.destroy())
+		self.exit_button=tk.Button(self.frame1,text="EXIT",font=('Arial',15,"bold"),bg='#FFD369',borderwidth=2, relief="solid",command=lambda:self.master.destroy())
 		self.exit_button.place(x=240,y=850,height=80,width=480)
 		'''self.imageWS = ImageTk.PhotoImage(Image.open("./Pygame_project/assets/wizard/wiza.gif"), format="gif -index 2")
 		self.image1=tk.Label(self.frame1, image=self.imageWS,bg='black')
@@ -63,9 +67,9 @@ def main2(name1,name2,char1="warrior",char2="warrior",image="background1"):
 
 	clock=pygame.time.Clock()
 	FPS=60
-	YELLOW=(255,255,0)
-	RED=(255,0,0)
-	WHITE=(255,255,255)
+	YELLOW=(255,211,105)
+	RED=(165,36,34)
+	WHITE=(235,242,250)
 	BLACK=(0,0,0)
 	count_font=pygame.font.Font("Pygame_project/assets/fonts/Turok.ttf",80)
 	score_font=pygame.font.Font("Pygame_project/assets/fonts/Turok.ttf",40)
@@ -110,8 +114,8 @@ def main2(name1,name2,char1="warrior",char2="warrior",image="background1"):
 			character=Character(player,x,y,flip,name,load_Samurai())
 		elif char=="evil wizard":
 			character=Character(player,x,y,flip,name,load_Evilwizard())
-		elif char=="merlin":
-			character=Character(player,x,y,flip,name,load_Merlin())
+		elif char=="Huntress":
+			character=Character(player,x,y,flip,name,load_Huntress())
 		elif char=="knight":
 			character=Character(player,x,y,flip,name,load_spaceknight())
 		elif char=="Tarzan":
@@ -131,12 +135,12 @@ def main2(name1,name2,char1="warrior",char2="warrior",image="background1"):
 		draw_health_bar(character1.health,20,20)
 		draw_health_bar(character2.health,SCREEN_WIDTH-400-30,20)
 		draw_text(f"{name1}: "+str(score[0]),score_font,WHITE,40,60)
-		draw_text(f"{name2}: "+str(score[1]),score_font,WHITE,SCREEN_WIDTH-(max(len(name2)*30,200)),60)
+		draw_text(f"{name2}: "+str(score[1]),score_font,WHITE,SCREEN_WIDTH-(len(name2)*50),60)
 		if intro_count<0:
 			character1.move(SCREEN_WIDTH,SCREEN_HEIGHT,screen,character2,round_over)
 			character2.move(SCREEN_WIDTH,SCREEN_HEIGHT,screen,character1,round_over)
 		else:
-			draw_text(str(intro_list[intro_count]),count_font,RED,SCREEN_WIDTH / 2-50,SCREEN_HEIGHT / 3)		
+			draw_text(str(intro_list[intro_count]),count_font,RED,SCREEN_WIDTH / 2-75,SCREEN_HEIGHT / 3)		
 			if (pygame.time.get_ticks()-last_count_update)>=1000:
 				intro_count-=1
 				last_count_update= pygame.time.get_ticks()
@@ -147,7 +151,13 @@ def main2(name1,name2,char1="warrior",char2="warrior",image="background1"):
 		character1.draw(screen)
 		character2.draw(screen)
 		if round_over==False:
-			if character1.alive==False:
+			if character1.alive==False and character2.alive==False:
+				score[0]+=1
+				score[1]+=1
+				round_number+=1
+				round_over=True
+				round_over_time=pygame.time.get_ticks()
+			elif character1.alive==False:
 				score[1]+=1
 				round_number+=1
 				round_over=True
@@ -158,36 +168,43 @@ def main2(name1,name2,char1="warrior",char2="warrior",image="background1"):
 				round_number+=1
 				round_over=True
 				round_over_time=pygame.time.get_ticks()
+
 				
 		else:
 			if round_number>3:
 				
 				if score[0]>score[1]:
-						draw_text(f"Game over! {name1} wins! ",score_font,RED,SCREEN_WIDTH/2-150,SCREEN_HEIGHT/2)
-				else:
-						draw_text(f"Game over! {name2} wins! ",score_font,RED,SCREEN_WIDTH/2-150,SCREEN_HEIGHT/2)
-				
+						draw_text(f"Game over! {name1} wins! ",score_font,RED,SCREEN_WIDTH/2-180,SCREEN_HEIGHT/2)
+				elif score[0]<score[1]:
+						draw_text(f"Game over! {name2} wins! ",score_font,RED,SCREEN_WIDTH/2-180,SCREEN_HEIGHT/2)
+				elif score[0]==score[1]:
+					draw_text(f"Game over! Draw! ",score_font,RED,SCREEN_WIDTH/2-180,SCREEN_HEIGHT/2)
 				if pygame.time.get_ticks()-round_over_time>ROUND_OVER_COOLDOWN:
 					
 					game_running=False
 			else:	
-				if character1.alive==False:
+				if character1.alive==False and character2.alive==False:
+					
+					draw_text("Draw!",score_font,RED,SCREEN_WIDTH/2-125,SCREEN_HEIGHT/2)
+				elif character1.alive==False:
+					
 					draw_text(f"{name2} wins! ",score_font,RED,SCREEN_WIDTH/2-150,SCREEN_HEIGHT/2)
-				screen.blit(victory_image,(600,350))
-				if character2.alive==False:
+					screen.blit(victory_image,(600,350))
+				elif character2.alive==False:
 					
 					draw_text(f"{name1} wins! ",score_font,RED,SCREEN_WIDTH/2-150,SCREEN_HEIGHT/2)
-				screen.blit(victory_image,(600,350))
-				if round_number>3:
+					
+					screen.blit(victory_image,(600,350))
+				'''if round_number>3:
 					round_over_time=pygame.time.get_ticks()
 					if score[0]>score[1]:
 							draw_text(f"Game over! {name1}  wins! ",score_font,RED,SCREEN_WIDTH/2-150,SCREEN_HEIGHT/2)
-					else:
+					elif score[0]<score[1]:
 							draw_text(f"Game over! {name2} wins! ",score_font,RED,SCREEN_WIDTH/2-150,SCREEN_HEIGHT/2)
 					if pygame.time.get_ticks()-round_over_time>ROUND_OVER_COOLDOWN:
 						
 						game_running=False
-						pygame.quit()
+						pygame.quit()'''
 				if pygame.time.get_ticks()-round_over_time>ROUND_OVER_COOLDOWN:
 					round_over=False
 					intro_count=3
@@ -217,5 +234,5 @@ def closeWindow(self):
         self.master.destroy()
         
 if __name__ == '__main__':
-	main()
-	#main2("Mohamed","HSAN","samurai","king","Temple")
+	#main()
+	main2("Mohamed","HSAN","king","king","Temple")

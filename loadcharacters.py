@@ -31,7 +31,7 @@ def load_ONI():
 	return(ONI_DATA,ONI_sheet,ONI_animation_steps)
 
 def load_King():
-	KING_SIZE=155
+	KING_SIZE=155.01
 	KING_SCALE=3
 	KING_OFFSET=[75,55]
 	KING_DATA=[KING_SIZE,KING_SCALE,KING_OFFSET]
@@ -41,10 +41,10 @@ def load_King():
 
 def load_Samurai():
 	SAMURAI_SIZE=200
-	SAMURAI_SCALE=4
-	SAMURAI_OFFSET=[90,75]
+	SAMURAI_SCALE=4.5
+	SAMURAI_OFFSET=[90,80]
 	SAMURAI_DATA=[SAMURAI_SIZE,SAMURAI_SCALE,SAMURAI_OFFSET]
-	SAMURAI_animation_steps=[8,8,4,6,6,4,6]
+	SAMURAI_animation_steps=[8,8,2,6,6,4,6]
 	SAMURAI_sheet=pygame.image.load("Pygame_project/assets/Samurai/Sprites/samurai.png").convert_alpha()
 	return(SAMURAI_DATA,SAMURAI_sheet,SAMURAI_animation_steps)
 
@@ -58,14 +58,14 @@ def load_Evilwizard():
 	WIZARD_sheet=pygame.image.load("Pygame_project/assets/Evilwizard/Sprites/evilwizard.png").convert_alpha()
 	return(WIZARD_DATA,WIZARD_sheet,WIZARD_animation_steps)
 
-def load_Merlin():
-	MERLIN_SIZE=187.5
-	MERLIN_SCALE=3
-	MERLIN_OFFSET=[0,175]
-	MERLIN_DATA=[MERLIN_SIZE,MERLIN_SCALE,MERLIN_OFFSET]
-	MERLIN_animation_steps=[6,7,2,7,7,4,7]
-	MERLIN_sheet=pygame.image.load("Pygame_project/assets/merlin/merlin2.png").convert_alpha()
-	return(MERLIN_DATA,MERLIN_sheet,MERLIN_animation_steps)
+def load_Huntress():
+	HUNTRESS_SIZE=150
+	HUNTRESS_SCALE=5.5
+	HUNTRESS_OFFSET=[65,65]
+	HUNTRESS_DATA=[HUNTRESS_SIZE,HUNTRESS_SCALE,HUNTRESS_OFFSET]
+	HUNTRESS_animation_steps=[8,8,2,5,5,3,8]
+	HUNTRESS_sheet=pygame.image.load("Pygame_project/assets/Huntress/Sprites/huntress.png").convert_alpha()
+	return(HUNTRESS_DATA,HUNTRESS_sheet,HUNTRESS_animation_steps)
 
 def load_spaceknight():
 	SPACE_SIZE=180
